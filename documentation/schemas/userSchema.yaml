@@ -1,0 +1,33 @@
+components:
+  schemas:    
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id unico para cada usuario.
+        firstName:
+          type: string
+          description: Primer nombre del usuario.
+        lastName:
+          type: string
+          description: Apellido del usuario.
+        email:
+          type: string
+          format: email
+          description: Email del usuario.
+        profileImage:
+          type: string
+          format: uri
+          description: URL que almacena la imagen de perfil del usuario.
+        phone:
+          type: string
+          description: Numero de telefono del usuario (debe ser unico).
+        password:
+          type: string
+          description: Password del usuario (debe tener minimo 4 caracteres).
+        role:
+          type: string
+          enum: [admin, barber, client]
+          description: Rol del usuario. Los valores posibles son "admin", "barber", or "client".

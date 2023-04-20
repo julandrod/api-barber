@@ -1,0 +1,26 @@
+components:
+  schemas:
+    Appointments:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id unico del turno.
+        appointmentDate:
+          type: string
+          example: 2023-04-17
+        appointmentHour:
+          type: string
+          example: 10:00
+        taken: 
+          type: string
+          description: Indica si el turno ya esta tomado
+          example: true (turno ya esta tomado)
+        status: 
+          type: string
+          enum: ["pending", "cancel", "done"]
+          description: Indica el estado del turno
+        message: 
+          type: string
+          description: Mensaje que se le envia al barbero al momento de solicitar el turno

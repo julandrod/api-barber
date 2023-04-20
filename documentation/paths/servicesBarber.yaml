@@ -1,0 +1,124 @@
+  /servicesbarber:
+    post:
+      tags:
+        - Servicios barbero
+      summary: Crear servicio barbero
+      description: Permite al administrador agregar un nuevo servicio a la aplicacion de la barberia.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: nuevo servicio
+                cost: 16000
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example: 
+                  code: 201
+                  message: "Nuevo servicio creado"
+                  body:
+                    id: "c1960567-9470-4db1-9424-a951d84794e3"
+                    name: "nuevo servicio"
+                    cost: 16000
+                    updatedAt: "2023-04-18T03:08:09.554Z"
+                    createdAt: "2023-04-18T03:08:09.554Z"
+    get:
+      tags:
+        - Servicios barbero
+      summary: Obtener servicios disponibles
+      description: Devuelve una lista de todos los servicios que ofrece la barberia y sus respectivos precios.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: 200
+                  message: "Servicios disponibles"
+                  body:
+                    - id: "8ab7e463-64a5-437a-98f6-ed44c9803140"
+                      name: "Corte Pelo"
+                      cost: 42681
+                    - id: "864a7521-f8fc-46d7-8796-7d85476c362d"
+                      name: "Corte Barba"
+                      cost: 45416
+  /servicesbarber/{serviceId}:
+    get:
+      tags:
+        - Servicios barbero
+      summary: Obtener un servicio disponible
+      description: Devuelve la informacion completa de un servicio.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example: 
+                  code: 200
+                  message: "Servicio disponible"
+                  body:
+                    id: "4cb9de0d-fd32-4932-b27f-53025383f143"
+                    name: "Lavado Y Corte"
+                    cost: 47743
+                    createdAt: "2023-04-16T02:30:58.555Z"
+                    updatedAt: "2023-04-16T02:30:58.555Z"
+    patch:
+      tags:
+        - Servicios barbero
+      summary: Actualizar un servicio disponible
+      description: Permite actualizar un servicio disponible, es necesario tener rol de admin.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: "servicio actualizado"
+                cost: 20000
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example:
+                  code: 200
+                  message: "Servicio actualizado"
+                  body:
+                    id: "c1960567-9470-4db1-9424-a951d84794e3"
+                    name: "servicio actualizado"
+                    cost: 20000
+                    createdAt: "2023-04-18T03:08:09.554Z"
+                    updatedAt: "2023-04-18T03:19:45.025Z"
+    delete:
+      tags:
+        - Servicios barbero
+      summary: Eliminar un servicio
+      description: Permite eliminar un servicio disponible, requiere rol de admin.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  code: 200
+                  message: "Servicio c1960567-9470-4db1-9424-a951d84794e3 eliminado de manera exitosa"

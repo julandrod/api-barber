@@ -1,0 +1,108 @@
+  /reviews/{barberId}:
+    post:
+      tags:
+        - Reviews
+      summary: Crear reseña barbero
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: muy buen trabajo
+                rating: 4
+                comment: muy buen barbero
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+              schema:
+                type: object
+                example: 
+                  code: 201
+                  message: "Reseña creada de manera exitosa"
+                  body: 
+                    id: "da443d1f-36bc-4659-b3b0-e1cdb48e67eb"
+                    title: "muy buen trabajo"
+                    rating: 4
+                    comment: "muy buen barbero"
+                    clientId: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                    barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                    updatedAt: "2023-04-18T02:48:09.441Z"
+                    createdAt: "2023-04-18T02:48:09.441Z"
+    get:
+      tags:
+        - Reviews
+      summary: Obtener reseñas barber
+      description: Devuelve un listado con las reseñas y calificaciones de los barberos dejadas por los clientes.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example: 
+                  code: 200
+                  message: "Reviews listadas de manera exitosa"
+                  body:
+                    reviews:
+                      - id: "9f58130a-e6de-4ea1-9390-456d7ef9eb53"
+                        title: "Vero ipsum officiis."
+                        rating: 5
+                        comment: "Optio doloremque dolore animi laudantium hic corporis. Sunt numquam natus voluptas harum mollitia modi adipisci."
+                        clientId: "53362548-9cae-4456-9ff6-6906c6ed7cf6"
+                        barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                      - id: "7a459a88-5878-4863-8fe1-1f9219cab279"
+                        title: "Ea consectetur impedit."
+                        rating: 3
+                        comment: "Voluptatum id nulla dolorum. A consequuntur ducimus sed adipisci architecto reprehenderit."
+                        clientId: "4397bc7e-7e41-4409-85e6-611efb897225"
+                        barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                    ratingAverage: 4
+
+  /reviews/review/{reviewId}:
+    get:
+      tags:
+        - Reviews
+      summary: Obtener reseña por Id
+      description: Devuelve el contenido de una reseaña.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: 200
+                  message: "Reseña listada de manera exitosa"
+                  body: 
+                    id: "da443d1f-36bc-4659-b3b0-e1cdb48e67eb"
+                    title: "muy buen trabajo"
+                    rating: 4
+                    comment: "muy buen barbero"
+                    clientId: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                    createdAt: "2023-04-18T02:48:09.441Z"
+                    updatedAt: "2023-04-18T02:48:09.441Z"
+                    barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+    delete:
+      tags:
+        - Reviews
+      summary: Eliminar reseña por Id
+      description: Elimina una reseña, para esto es necesario un token y tener rol de admin.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example:
+                  code: 200
+                  message: "Review da443d1f-36bc-4659-b3b0-e1cdb48e67eb eliminada de manera exitosa"

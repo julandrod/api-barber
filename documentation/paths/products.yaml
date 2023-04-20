@@ -1,0 +1,147 @@
+  /products:
+    post:
+      tags:
+        - Productos
+      summary: Crear producto
+      description: Permite al administrador agregar un producto, requiere rol de admin.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: "Cepillo"
+                description: "Un cepillo de barbero" 
+                price: 35000
+                stock: 7 
+                productImage: "https://exitocol.vtexassets.com/arquivos/ids/564818/Cepillo-Andis-Portable-Barbero-Barberia-Barba-Cabello-Suave.jpg"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example: 
+                  code: 201
+                  message: "Producto creado de manera exitosa"
+                  body:
+                    id: "3935766c-8830-4667-b8da-264320a5afc7"
+                    title: "Cepillo"
+                    description: "Un cepillo de barbero"
+                    price: 35000
+                    stock: 7
+                    productImage: "https://exitocol.vtexassets.com/arquivos/ids/564818/Cepillo-Andis-Portable-Barbero-Barberia-Barba-Cabello-Suave.jpg"
+                    updatedAt: "2023-04-18T03:29:51.973Z"
+                    createdAt: "2023-04-18T03:29:51.973Z"
+    get:
+      tags:
+        - Productos
+      summary: Obtener todos los productos
+      description: Devuelve un listado de todos los productos disponibles.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: 200
+                  message: "Productos listados de manera exitosa"
+                  body: 
+                    count: 2
+                    rows:
+                      - id: "2f9b94c8-7329-4bf1-b53c-9c2857551a1c"
+                        title: "Totam expedita et."
+                        description: "Quidem laboriosam corrupti fugiat quisquam. Ipsum repellendus sequi alias impedit facilis assumenda alias vero voluptatum. Sequi consequatur a tempore assumenda natus. Esse sit deserunt eum quis nihil aspernatur. Reiciendis eaque beatae voluptates. Quasi iste quibusdam illo possimus."
+                        price: 33838
+                        stock: 2
+                        productImage: "https://thebarberia.com/storage/product/bmcGgIy1ZhI0W5HjuLYEtDfkPTPVWWuXKF9etLd2.png"
+                        createdAt: "2023-04-16T15:18:40.841Z"
+                        updatedAt: "2023-04-16T15:18:40.841Z"
+                      - id": "c27cac0a-54ea-4df9-aa83-a17d966ed636"
+                        title: "Necessitatibus perspiciatis nihil."
+                        description: "Distinctio ab blanditiis recusandae non officiis laborum dolorem quod. Suscipit cum expedita dolore temporibus animi. Recusandae quos ullam ad doloremque ut. Vel temporibus nihil dolores dolorem quos nisi deserunt eveniet ipsum. Praesentium repellat sapiente odit praesentium illum sit quam deleniti soluta. Sint veniam perferendis nesciunt voluptates voluptate."
+                        price: 87958
+                        stock: 4
+                        productImage: "https://exitocol.vtexassets.com/arquivos/ids/564818/Cepillo-Andis-Portable-Barbero-Barberia-Barba-Cabello-Suave.jpg"
+                        createdAt: "2023-04-16T00:45:31.587Z"
+                        updatedAt: "2023-04-16T00:45:31.587Z"
+  /products/{productId}:
+    get:
+      tags:
+        - Productos
+      summary: Obtener producto por Id
+      description: Devuelve la informacion de un producto.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: 200
+                  message: "Producto listado de manera exitosa"
+                  body:
+                    id: "3935766c-8830-4667-b8da-264320a5afc7"
+                    title: "Cepillo"
+                    description: "Un cepillo de barbero"
+                    price: 35000
+                    stock: 7
+                    productImage: "https://exitocol.vtexassets.com/arquivos/ids/564818/Cepillo-Andis-Portable-Barbero-Barberia-Barba-Cabello-Suave.jpg"
+                    updatedAt: "2023-04-18T03:29:51.973Z"
+                    createdAt: "2023-04-18T03:29:51.973Z"
+    patch:
+      tags:
+        - Productos
+      summary: Actualizar producto por Id
+      description: Permite actualizar un producto, require rol de admin.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: tijeras
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+               schema:
+                type: object
+                example:
+                  code: 200
+                  message: "Producto actualizado de manera exitosa"
+                  body:
+                    id: "3935766c-8830-4667-b8da-264320a5afc7"
+                    title: "tijeras"
+                    description: "Un cepillo de barbero"
+                    price: 35000
+                    stock: 7
+                    productImage: "https://exitocol.vtexassets.com/arquivos/ids/564818/Cepillo-Andis-Portable-Barbero-Barberia-Barba-Cabello-Suave.jpg"
+                    updatedAt: "2023-04-18T03:29:51.973Z"
+                    createdAt: "2023-04-18T03:29:51.973Z"
+    delete:
+      tags:
+        - Productos
+      summary: Eliminar producto por Id
+      description: Permite eliminar un producto, requiere rol de admin.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200
+                  message: "Producto 3935766c-8830-4667-b8da-264320a5afc7 eliminado"

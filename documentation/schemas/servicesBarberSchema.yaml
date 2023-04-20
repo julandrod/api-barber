@@ -1,0 +1,17 @@
+components: 
+  schemas:
+    ServicesBarber:
+      type: object
+      properties:
+        id: 
+          type: string
+          format: uuid
+          description: Id unico para cada servicio.
+        name: 
+          type: string
+          description: Nombre del servicio
+          example: Corte de pelo
+        cost: 
+          type: integer
+          description: Costo del servicio
+          example: 20000

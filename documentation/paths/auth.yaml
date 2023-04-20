@@ -1,0 +1,141 @@
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Registrar un usuario
+      description: Registra un usuario en la aplicacion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: Timoteo
+                lastName: Barrera
+                email: t.barrera@mail.com
+                phone: '1234567899'
+                password: '123456'
+      responses:
+        '201':
+          description: Usuario creado exitosamente
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example: 
+                  code: 201
+                  message: "Nuevo usuario registrado"
+                  body: "Usuario registrado de manera exitosa"
+        '400': 
+          description: Bad request
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example: 
+                  message: "El apellido es obligatorio, Email incorrecto"
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login de usuario
+      description: Permite que el usuario haga login en la aplicacion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: t.barrera@mail.com
+                password: '123456'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200,
+                  message: "Login exitoso"
+                  body: 
+                    user: 
+                      id: "4f2934f0-47cf-4206-9a79-dcdf991df25c"
+                      firstName: "Timoteo"
+                      lastName: "Barrera"
+                      role: "client"
+                      email: "t.barrera@mail.com"
+                      phone: "1234567899"
+                      profileImage: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    token: "eyJhbGciOiJIUzI1MiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhYWM5NmFgLTFkN2MtNGQ1MS04ZjY2LWRjNDViY2M3N2M1MCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MTc2NzY1MCwiZXhwIjoxNjgxODU0MDUwfQ.L5KQGlEUvKJHMCG-QNbaRUe24S8S4Rdr1cNjscP5UVc"
+        '400': 
+          description: Bad request
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example: 
+                  message: "El apellido es obligatorio, Email incorrecto"
+        '401': 
+          description: Unauthorized
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example: 
+                  message: "Credenciales inválidas"
+            
+  /auth/verifyEmail:
+    post:
+      tags:
+        - Auth
+      summary: Verificar email usuario
+      description: Permite verificar un usuario mediante una url que se le envia al correo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: t.barrera@mail.com
+                verificationToken: >-
+                  8f666f7dc218fe05633c4c13163c20ae419f62e72af1a5d25d366e4c9514cdec607578ada15d6719
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200
+                  message: "Usuario verificado de manera exitosa"
+  /auth/resetPass:
+    post: 
+      tags:
+        - Auth
+      summary: Permite cambiar la contrasña
+      description: El usuario puede cambiar su contraseña. Requiere del token del usuario.
+      security:
+        - bearerAuth: []
+      requestBody:
+        content: 
+          application/json:
+            schema: 
+              type: object
+              example: 
+                email: "t.barrera@mail.com" 
+                oldPassword: "123456" 
+                newPassword: "234567" 
+                confirmNewPassword: "234567"
+      responses:
+        '200':
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200
+                  message: "Contraseña actualizada."
+                  body: "La contraseña ha sido actualizada."

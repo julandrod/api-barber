@@ -1,0 +1,299 @@
+  /users/all/barber:
+    get:
+      tags:
+        - Users
+      summary: Obtener listado de usuarios por role "barber"
+      description: Devuelve un listado con todos los barberos.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200
+                  message: "Barberos listados de manera exitosa"
+                  body: 
+                    count: 2
+                    rows: 
+                      - id: "a2639154-9d9f-4290-882b-bef9090a5878"
+                        firstName: "Samuel"
+                        lastName: "Vázquez"
+                        email: "Magdalena_Arenas@hotmail.com"
+                        profileImage: "https://randomuser.me/api/portraits/men/0.jpg"
+                        phone: "7253581125"
+                        role: "barber"
+                        description: "descripcion del barbero."
+                        verificationToken: ""
+                        verified: true
+                        createdAt: "2023-04-15T20:10:04.274Z"
+                        updatedAt: "2023-04-15T20:10:04.274Z"
+                      - id: "05bda72a-568e-4476-bc61-d2ad0ecae7b3"
+                        firstName: "Eduardo"
+                        lastName: "Calvillo"
+                        email: "Mariana_Rico40@yahoo.com"
+                        profileImage: "https://randomuser.me/api/portraits/men/1.jpg"
+                        phone: "8165971290"
+                        role: "barber"
+                        description: "descripcion del barbero."
+                        verificationToken: ""
+                        verified: true
+                        createdAt: "2023-04-15T21:34:57.408Z"
+                        updatedAt: "2023-04-15T21:34:57.408Z"
+  /users/all/client:
+    get:
+      tags:
+        - Users
+      summary: Obtener listado de usuarios por role "client"
+      description: Devuelve un listado con todos los clientes.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200
+                  message: "Clientes listados de manera exitosa"
+                  body: 
+                    count: 2
+                    rows: 
+                      - id: "a2639154-9d9f-4290-882b-bef9090a5878"
+                        firstName: "Samuel"
+                        lastName: "Vázquez"
+                        email: "Magdalena_Arenas@hotmail.com"
+                        profileImage: "https://randomuser.me/api/portraits/men/0.jpg"
+                        phone: "7253581125"
+                        role: "client"
+                        verificationToken: ""
+                        verified: true
+                        createdAt: "2023-04-15T20:10:04.274Z"
+                        updatedAt: "2023-04-15T20:10:04.274Z"
+                      - id: "05bda72a-568e-4476-bc61-d2ad0ecae7b3"
+                        firstName: "Eduardo"
+                        lastName: "Calvillo"
+                        email: "Mariana_Rico40@yahoo.com"
+                        profileImage: "https://randomuser.me/api/portraits/men/1.jpg"
+                        phone: "8165971290"
+                        role: "client"
+                        verificationToken: ""
+                        verified: true
+                        createdAt: "2023-04-15T21:34:57.408Z"
+                        updatedAt: "2023-04-15T21:34:57.408Z"
+                      
+  /users/showMe:
+    get:
+      tags:
+        - Users
+      summary: Mostrar informacion del usuario activo
+      description: Muestra la informacion del usuario que tiene la sesion activa.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200,
+                  message: "Login exitoso"
+                  body: 
+                    id: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                    firstName: "Timoteo"
+                    lastName: "Barrera"
+                    role: "client"
+                    email: "t.barrera@mail.com"
+                    phone: "1234567899"
+                    profileImage: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    description: null
+                    verificationToken: ""
+                    verified: true
+                    createdAt: "2023-04-17T22:07:01.952Z"
+                    updatedAt: "2023-04-17T22:09:30.237Z"
+
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Obtener usuario por Id
+      description: Devuelve la informacion de un usuario por su Id.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example:
+                  code: 200
+                  message: "Usuario encontrado"
+                  body: 
+                    id: "72d0eac4-e88e-4886-b0a7-fbe40899de95"
+                    firstName: "Francisca"
+                    lastName: "Rubio"
+                    email: "Diana_Salcido98@yahoo.com"
+                    profileImage: "https://randomuser.me/api/portraits/men/37.jpg"
+                    phone: "8897887910"
+                    role: "client"
+                    description: ""
+                    verificationToken: ""
+                    verified: true
+                    createdAt: "2023-04-16T08:58:27.738Z"
+                    updatedAt: "2023-04-16T08:58:27.738Z"
+    patch:
+      tags:
+        - Users
+      summary: Actualizar usuario por Id
+      description: Permite actualizar la informacion de un usuario.
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: "Oscar"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example:
+                  code: 200
+                  message: "Usuario actualizado de manera exitosa"
+                  body: 
+                    user:
+                      id: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                      firstName: "Oscar"
+                      lastName: "Barrero"
+                      email: "t.barrero@mail.com"
+                      profileImage: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                      phone: "1234567890"
+                      role: "client"
+                      description: ""
+                      verificationToken: "11da1d6007b1121e6f8545433bbd4911f3fe37b73c460883b932845799366b2b236691f2317aecd7"
+                      verified: true
+                      createdAt: "2023-04-17T22:07:01.952Z"
+                      updatedAt: "2023-04-17T23:06:11.701Z"
+                    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjODFmZTg1LTgxNjEtNDQ0ZC05NmZlLWVlNDFmY2MyYzI0OCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE2ODE3NzMzNTksImV4cCI6MTY4MTg1OTc1OX0.W4_XFCa5bJyC5ZB15JYWYWT4t8S6rVx5rr9ip_rtI3g"
+    delete:
+      tags:
+        - Users
+      summary: Eliminar usuario por Id
+      description: Permite eliminar un usuario por su Id.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example: 
+                  message: Usuario 13f12fd1-d6d8-45ec-98ac-4d2a65f05c7b eliminado
+  /users/changeRole/{id}:
+    patch:
+      tags:
+        - Users
+      summary: Actualizar rol usuario
+      description: Permite cambiar el rol de un usuario.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                role: barber
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200
+                  message: "Rol del usuario modificado"
+                  body: 
+                    user:
+                      id: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                      firstName: "Oscar"
+                      lastName: "Barrero"
+                      email: "t.barrero@mail.com"
+                      profileImage: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                      phone: "1234567890"
+                      role: "barber"
+                      description: ""
+                      verificationToken: "11da1d6007b1121e6f8545433bbd4911f3fe37b73c460883b932845799366b2b236691f2317aecd7"
+                      verified: true
+                      createdAt: "2023-04-17T22:07:01.952Z"
+                      updatedAt: "2023-04-17T23:06:11.701Z"
+                    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjODFmZTg1LTgxNjEtNDQ0ZC05NmZlLWVlNDFmY2MyYzI0OCIsInJvbGUiOiJjbGllbnQiLCJpYXQiOjE2ODE3NzMzNTksImV4cCI6MTY4MTg1OTc1OX0.W4_XFCa5bJyC5ZB15JYWYWT4t8S6rVx5rr9ip_rtI3g"
+
+  /users/analyticsbarber/{barberId}:
+    get:
+      tags:
+        - Users
+      summary: Resumen actividades barbero
+      description: Muestra un resumen de todos los servicios que hizo el barbero en un determinado periodo de tiempo, asi mismo muestra el precio de cada servicio, el porcentaje de cada servicio que le toca a cada barbero y el total a pagar a dicho barbero.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: startDate
+          schema:
+            type: string
+            example: "23-04-15"
+          description: Fecha inicial a evaluar
+        - in: query
+          name: endDate
+          schema:
+            type: string
+            example: "23-04-22"
+          description: Fecha final a evaluar
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: 
+              schema: 
+                type: object
+                example: 
+                  code: 200
+                  message: "Resumen actividades barbero"
+                  body: 
+                    barberInfo: 
+                      id: "a2639154-9d9f-4290-882b-bef9090a5878"
+                      firstName: "Samuel"
+                      lastName: "Vázquez"
+                      profileImage: "https://randomuser.me/api/portraits/men/0.jpg"
+                      email: "Magdalena_Arenas@hotmail.com"
+                      phone: "7253581125"
+                    servicesAnalytics: 
+                      - name: "Lavado Y Perfilado"
+                        singleCost: 28381
+                        totalCost: 56762
+                        quantity: 2
+                        singleTotalBarber: 14190.5
+                        totalBarber: 28381
+                      - name: "Corte Pelo Y Barba"
+                        singleCost: 24680
+                        totalCost: 24680
+                        quantity: 1
+                        singleTotalBarber: 12340
+                        totalBarber: 12340
+                    "paymentBarber": 40721

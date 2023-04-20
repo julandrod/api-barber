@@ -1,0 +1,25 @@
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id unico del producto.
+        title:
+          type: string
+          description: Nombre del producto.
+        description:
+          type: string
+          description: Descripcion sobre el producto.
+        price:
+          type: integer
+          description: Precio del producto.
+        stock:
+          type: integer
+          description: Cantidad del producto en stock.
+        productImage:
+          type: string
+          format: uri
+          description: Url con la imagen del producto.

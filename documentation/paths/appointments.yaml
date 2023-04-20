@@ -1,0 +1,227 @@
+  /appointments/barber/{barberId}:
+    post:
+      tags:
+        - Turnos
+      summary: Crear turno
+      description: Permite crear un turno con un barbero a traves del barberId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                date: '2023-06-25'
+                hour: '7:30'
+                servicesId: feb05637-c493-4b19-8973-bc3ffed6150f
+                message: mensaje de prueba
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 201
+                  message: "Turno creado"
+                  body: 
+                    newAppointment: 
+                      id: "9faab50a-b152-428a-a320-25ad18fd520c"
+                      appointmentDate: "2023-06-25T05:00:00.000Z"
+                      appointmentHour: "10:00"
+                      servicesId": "8ab7e463-64a5-437a-98f6-ed44c9803140"
+                      message: "mensaje de prueba"
+                      status: "pending"
+                      taken: true
+                      clientId: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                      barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                      updatedAt: "2023-04-18T00:58:46.812Z"
+                      createdAt: "2023-04-18T00:58:46.812Z"
+                    serviceBarber:
+                        id: "8ab7e463-64a5-437a-98f6-ed44c9803140"
+                        name: "Corte Pelo"
+                        cost: 42681
+                        createdAt: "2023-04-16T11:11:38.584Z"
+                        updatedAt: "2023-04-16T11:11:38.584Z"
+    get:
+      tags:
+        - Turnos
+      summary: Listar turnos por id barbero
+      description: Muestra una lista de todos los turnos que tiene asignado el barbero.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example: 
+                  code": 200,
+                  message: "turnos asignados por barbero"
+                  body: 
+                    - id": "9faab50a-b152-428a-a320-25ad18fd520c"
+                      appointmentDate: "2023-06-25"
+                      appointmentHour: "5:40"
+                      taken: true
+                      status: "pending"
+                      message: "mensaje de prueba"
+                      clientId: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                      barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                      servicesId: "8ab7e463-64a5-437a-98f6-ed44c9803140"
+                      ServicesBarber:
+                        name: "Corte Pelo"
+                        cost: 42681
+                    - id": "8f0a6ff1-446b-43cc-aaab-500035597ad4"
+                      appointmentDate: "2023-04-19"
+                      appointmentHour: "9:00"
+                      taken: false
+                      status: "cancel"
+                      message: "Placeat iusto occaecati placeat quam."
+                      clientId: "d9b928c2-41c0-430e-a911-17c4467dd217"
+                      barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                      servicesId: "864a7521-f8fc-46d7-8796-7d85476c362d"
+                      ServicesBarber": 
+                        name": Corte Barba"
+                        cost: 45416
+
+  /appointments/client/{clientId}:
+    get:
+      tags:
+        - Turnos
+      summary: Listar turnos por id cliente
+      description: Muestra una lista de todos los turnos que tiene asignado el cliente.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: 200
+                  message: "turnos asignados por cliente"
+                  body: 
+                    - id: "9faab50a-b152-428a-a320-25ad18fd520c"
+                      appointmentDate: "2023-06-25"
+                      appointmentHour: "5:40"
+                      taken: true
+                      status: "pending"
+                      message: "mensaje de prueba"
+                      clientId: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                      barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                      servicesId: "8ab7e463-64a5-437a-98f6-ed44c9803140"
+                      ServicesBarber:
+                        name: "Corte de Pelo"
+                        cost: 42681
+
+  /appointments/{appointmentId}:
+    patch:
+      tags:
+        - Turnos
+      summary: Actualizar turno por id
+      description: Permite actualizar la hora y fecha de un turno
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                newDate: '2023-06-26T00:00:00.000Z'
+                newHour: '10:10'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: 200
+                  message: "Turno actualizado de manera exitosa"
+                  body": 
+                    id: "9faab50a-b152-428a-a320-25ad18fd520c"
+                    appointmentDate: "2023-06-25"
+                    appointmentHour: "10:00"
+                    taken: true
+                    status: "pending"
+                    message: "mensaje de prueba"
+                    createdAt: "2023-04-18T00:58:46.812Z"
+                    updatedAt: "2023-04-18T02:11:28.314Z"
+                    clientId: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                    barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                    servicesId: "8ab7e463-64a5-437a-98f6-ed44c9803140"
+                    ServicesBarber: 
+                      name: "Corte Pelo"
+                      cost: 42681
+
+  /appointments/myAppointments:
+    get:
+      tags:
+        - Turnos
+      summary: Obtener mis turnos como usuario activo
+      description: Muestra todos los turnos que tiene el usuario que esta en la sesion activa.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                type: object
+                example: 
+                  code: 200
+                  message: "turnos asignados"
+                  body:
+                    - id: "9faab50a-b152-428a-a320-25ad18fd520c"
+                      appointmentDate: "2023-06-25"
+                      appointmentHour: "10:00"
+                      taken: true
+                      status: "pending"
+                      message: "mensaje de prueba"
+                      clientId: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                      barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                      servicesId: "8ab7e463-64a5-437a-98f6-ed44c9803140"
+                      ServicesBarber: 
+                        name: "Corte Pelo"
+                        cost: 42681
+
+  /appointments/cancel/{appointmentId}:
+    patch:
+      tags:
+        - Turnos
+      summary: Cancelar turno por Id  
+      description: Permite cancelar un turno.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  code: 200
+                  message: "Turno cancelado de manera exitosa"
+                  body:
+                    id: "9faab50a-b152-428a-a320-25ad18fd520c"
+                    appointmentDate: "2023-06-25"
+                    appointmentHour: "10:00"
+                    taken: false
+                    status: cancel
+                    message: "mensaje de prueba"
+                    createdAt: "2023-04-18T00:58:46.812Z"
+                    updatedAt: "2023-04-18T02:22:04.022Z"
+                    clientId: "ac81fe85-8161-444d-96fe-ee41fcc2c248"
+                    barberId: "a2639154-9d9f-4290-882b-bef9090a5878"
+                    servicesId: "8ab7e463-64a5-437a-98f6-ed44c9803140"
+                    ServicesBarber: 
+                      name: "Corte Pelo"
+                      cost: 42681

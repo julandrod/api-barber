@@ -1,0 +1,29 @@
+components:
+  schemas:
+    Reviews:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id unico para cada review.
+        title:
+          type: string
+          description: Titulo de la reseña
+          example: Buen barbero y buen servicio
+        rating:
+          type: integer
+          description: Calificacion que se le da a cada barbero.
+          example: 4
+        comment: 
+          type: string
+          description: Comentario que se puede dejar acerca del barbero y/o servicio.
+          example: El barbero me atendio super bien.
+        clientId: 
+          type: string
+          format: uuid
+          description: Id unico del cliente que tuvo el serivicio y quien califica al barbero.
+        barberId: 
+          type: string
+          format: uuid
+          description: Id unico del barbero a quien se califica.
