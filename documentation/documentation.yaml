@@ -3,7 +3,7 @@ info:
   title: Barberia
   version: 1.0.0
 servers:
-  - url: http://{{url}}/api/v1
+  - url: https://api-barber-production.up.railway.app/api/v1
 components:
   securitySchemes:
     bearerAuth:
